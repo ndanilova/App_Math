@@ -74,6 +74,14 @@ def rmsd(f, f_prime, x, h):
     true = f_prime(x)
     return np.sqrt(np.mean((num - true)**2))
 
+h_values = [0.1, 0.05, 0.025, 0.0125]
+rmsd_values = [rmsd(f, df, np.pi/4, h) for h in h_values]
+plt.loglog(h_values, rmsd_values, 'o-')
+plt.xlabel('Размер шага')
+plt.ylabel('СКО')
+plt.title('Сходимость числовой производной')
+plt.show()
+
 def rectangle_rule(f, a, b, n):
     h = (b - a) / n
     x = np.linspace(a, b, n+1)
