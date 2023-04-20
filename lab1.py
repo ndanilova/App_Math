@@ -27,7 +27,7 @@ def central_difference(f, x, h):
     return (f(x + h) - f(x - h)) / (2 * h)
 
 
-x = 1
+x = 2
 h = 0.1
 a = 0
 b = np.pi/2
@@ -51,12 +51,11 @@ plt.title("График функции sin(x) * x")
 
 plt.show()
 
-x0 = 1
-df_num = (f(x0 + h) - f(x0 - h)) / (2 * h)
-dg_num = (g(x0 + h) - g(x0 - h)) / (2 * h)
+df_num = (f(x + h) - f(x - h)) / (2 * h)
+dg_num = (g(x + h) - g(x - h)) / (2 * h)
 
 
-x_range = (0, 1)
+x_range = (0, 2)
 
 x_values = []
 numerical_derivatives = []
@@ -101,8 +100,8 @@ g_rect = rectangle_rule(g, 0, np.pi, n)
 g_trap = trapezoid_rule(g, 0, np.pi, n)
 g_simp = simpson_rule(g, 0, np.pi, n)
 
-# Подсчет истинного значения производной cos(x) на промежутке [0; 2pi]
-web = np.linspace(0, 2 * np.pi, 100)
+# Подсчет истинного значения производной cos(x) на промежутке [0; 2]
+web = np.linspace(0, 2, 100)
 y_true = df(web)
 
 # Подсчет значения производной cos(x) на промежутке [0; 2pi] с шагом h
@@ -119,6 +118,7 @@ plt.xlabel('Шаг h')
 plt.ylabel('Отклонение от аналитического решения')
 plt.title('Зависимость отклонения от величины шага')
 plt.show()
+
 print("------------Дифференцирование-------------")
 print("Центральная разностная производная f'(1) = ", central_difference(f,x,h))
 print("Левая разностная производная f'(1) =", left_diff(f, x, h))
